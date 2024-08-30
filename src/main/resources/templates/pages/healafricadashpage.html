@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/dashboard}" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <title>Main | Dashboard</title>
+</head>
+<body>
+  <div class="main-content container-fluid" layout:fragment="content">
+      <div class="page-title">
+        <h3>HEAL AFRICA</h3>
+      </div>
+      <section class="section">
+        <div class="row mb-2 text-white">
+          <div class="col-12 col-md-3">
+            <div class="d-flex flex-column px-3 py-3 justify-content-between" style="background-color: #fdbd67">
+              <h4 class='card-title'>PATIENTS</h4>
+              <div class="card-right d-flex align-items-center">
+                <!--UPDATE DATA DYNAMICALLY FROM DATABASE-->
+                <h3 class="text-white">1000</h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-3">
+            <div class="d-flex flex-column px-3 py-3 justify-content-between" style="background-color: #828d99">
+              <h4 class='card-title'>PERSONEL SOIGNANT</h4>
+              <div class="card-right d-flex align-items-center">
+                <!--UPDATE DATA DYNAMICALLY FROM DATABASE-->
+                <h3 class="text-white">1000</h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-3">
+            <div class="d-flex flex-column px-3 py-3 justify-content-between" style="background-color: #4d93da">
+              <h4 class='card-title'>MEDCIN SPECIALIST </h4>
+              <div class="card-right d-flex align-items-center">
+                <!--UPDATE DATA DYNAMICALLY FROM DATABASE-->
+                <h3 class="text-white">1000</h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-3">
+              <div class="d-flex flex-column px-3 py-3 justify-content-between" style="background-color: #4dde96">
+                <h4 class='card-title'>TRANSFERT</h4>
+                <div class="card-right d-flex align-items-center">
+                  <!--UPDATE DATA DYNAMICALLY FROM DATABASE-->
+                  <h3 class="text-white">1000</h3>
+                </div>
+            </div>
+          </div>
+        </div>
+      </section>
+  </div>
+
+<!--  <script th:src="@{/js/sidebarActiveLink.js}"></script>-->
+<!--  <script th:src="@{/js/jquery.min.js}"></script> &lt;!&ndash; Ensure jQuery is loaded &ndash;&gt;-->
+</body>
+</html>

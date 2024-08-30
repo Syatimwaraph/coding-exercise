@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create - Account</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+
+    <link rel="shortcut icon" th:href="@{/images/favicon-2.svg}" type="image/x-icon">
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+    <link rel="stylesheet" th:href="@{/css/register_hospital_styles.css}">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7 col-sm-12 mx-auto">
+                <div class="card pt-4">
+                    <div class="card-body">
+                        <div class="text-center mb-5">
+                            <img th:src="@{/images/favicon-2.svg}" height="48" class='mb-4'>
+                            <h3>Creer Un Compte</h3>
+                            <p>Completer le Formulaire.</p>
+                        </div>
+                        <form th:action="@{/useraccount/registration}" th:object="${userAccount}" th:method="${method}">
+                            <div class="row">
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label for="first-name-column">First Name</label>
+                                        <input type="text" id="first-name-column" th:field="*{userFirstName}" class="form-control"  name="fname-column" placeholder="Jane">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label for="last-name-column">Last Name</label>
+                                        <input type="text" id="last-name-column" th:field="*{userLastName}" class="form-control"  name="lname-column" placeholder="Austin">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label for="username-column">Username</label>
+                                        <input type="text" id="username-column" th:field="*{userEmail}" class="form-control" name="username-column" placeholder="janeaustin@gmail.com">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label for="user-password">Password</label>
+                                        <input type="password" id="user-password" th:field="*{userPassword}" class="form-control" name="username-column" placeholder="********">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <!-- Load data from the database -->
+                                        <label for="hospitalNameField">Hôpital</label>
+                                        <select class="form-select" multiple th:field="*{hospital}" id="hospitalNameField">
+                                            <option th:each="hospital:${listofhosptals}"
+                                                    th:value="${hospital.hospitalId}"
+                                                    th:text="${hospital.hospitalName}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </diV>
+
+                            <a href="auth-login.html">Avez-vous un compte ? Connectez-vous</a>
+                            <div class="clearfix">
+                                <button type="submit" class="btn btn-primary float-end">S'inscrire</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

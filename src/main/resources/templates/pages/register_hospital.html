@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Register Hospital</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+    <link rel="stylesheet" th:href="@{/css/register_hospital_styles.css}">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-7 col-sm-12 mx-auto">
+                <div class="card pt-4">
+                    <div class="card-body">
+                        <div class="text-center mb-5">
+                            <img th:src="@{/images/favicon-2.svg}" height="48" class='mb-4'>
+                            <h3>Enregister Hôpital</h3>
+                            <p>Completer le formulaire.</p>
+                        </div>
+                        <form th:action="@{/hospital/registration}" th:object="${hospital}" th:method="${method}">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                        <label for="hospitalName" class="form-label">Nom de l'Hôpital</label>
+                                        <input type="text" class="form-control" id="hospitalName" th:field="*{hospitalName}" aria-describedby="emailHelp">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                        <label for="hospitalAddress" class="form-label">Address</label>
+                                        <input type="text" class="form-control" th:field="*{hospitalAddress}" id="hospitalAddress">
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between mt-3">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <a th:href="@{/healafricadashboard}" class="btn btn-secondary">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script th:src="@{/js/feather.min.js}"></script>
+    <script th:src="@{/js/app.js}"></script>
+
+    <script th:src="@{/js/main.js}"></script>
+</body>
+</html>
