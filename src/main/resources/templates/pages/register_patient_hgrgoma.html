@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Heal-Africa - Patient</title>
-  <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
-  <link rel="stylesheet" th:href="@{/css/app.css}">
-  <link rel="stylesheet" th:href="@{/css/register_hospital_styles.css}">
+    <meta charset="UTF-8">
+    <title>HGR-Goma - Patient</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+    <link rel="stylesheet" th:href="@{/css/register_hospital_styles.css}">
 </head>
 <body>
 <div class="container mt-5">
@@ -18,7 +18,7 @@
             <h3>Enregister Patient</h3>
             <p>Completer le formulaire.</p>
           </div>
-          <form th:action="@{/registerpatient/healafrica}" th:object="${patienthealAfrica}" method="post">
+          <form th:action="@{/hgrgoma}" th:object="${patientHGRGoma}" method="post">
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="firstName" class="form-label">Nom</label>
@@ -55,7 +55,7 @@
             </div>
             <div class="d-flex justify-content-between mt-3">
               <button type="submit" class="btn btn-primary">Submit</button>
-              <a th:href="@{/healafricadashboard}" class="btn btn-secondary">Retour</a>
+              <a th:href="@{/hgrgomadashboard}" class="btn btn-secondary">Retour</a>
             </div>
           </form>
         </div>

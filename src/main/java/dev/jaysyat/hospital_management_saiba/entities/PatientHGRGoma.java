@@ -7,21 +7,17 @@ import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
-
 @Entity
 @Getter
 @Setter
-public class PatientHealAfrica {
-
+public class PatientHGRGoma {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long healAfricaPatientId;
+    private Long hgrGomaPatientId;
     private String firstName;
     private String lastName;
     private String dateOfBirth;
     private String patientGender;
     private String address;
     private String patientEmail;
-
 }

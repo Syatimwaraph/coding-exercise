@@ -49,8 +49,12 @@
                                 <a th:href="@{/registerhospital}">Enregistrer Hôpital</a>
                             </li>
                             <li>
-                                <a th:href="@{/registerpatienthealafrica}">Enregistrer Patient</a>
+                                <a th:href="@{/registerpatienthealafrica}" th:if="${session.role == 'HEAL-AFRICA'}">Enregistrer Patient</a>
+                                <a th:href="@{/registerpatienthgrgoma}" th:if="${session.role == 'HGR-GOMA'}">Enregistrer Patient</a>
                             </li>
+                            <!--                            <li>-->
+<!--                                <a th:href="@{/registerpatienthealafrica}">Enregistrer Patient</a>-->
+<!--                            </li>-->
                             <li>
                                 <a href="form-element-input-group.html">Demande de Transfert</a>
                             </li>

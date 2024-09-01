@@ -1,10 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/dashboard}" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>HGR-GOMA | Dashboard</title>
 </head>
 <body>
-<h1>Hello World</h1>
+<div class="main-content container-fluid" layout:fragment="content">
+    <div class="page-title">
+        <h3>HGR - GOMA</h3>
+    </div>
+    <section class="section">
+        <div class="row mb-2 text-white">
+            <div class="col-12 col-md-3">
+                <div class="d-flex flex-column px-3 py-3 justify-content-between" style="background-color: #fdbd67">
+                    <h4 class='card-title'>PATIENTS</h4>
+                    <div class="card-right d-flex align-items-center">
+                        <!--UPDATE DATA DYNAMICALLY FROM DATABASE-->
+                        <h3 class="text-white">100</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-3">
+                <div class="d-flex flex-column px-3 py-3 justify-content-between" style="background-color: #828d99">
+                    <h4 class='card-title'>PERSONEL SOIGNANT</h4>
+                    <div class="card-right d-flex align-items-center">
+                        <!--UPDATE DATA DYNAMICALLY FROM DATABASE-->
+                        <h3 class="text-white">000</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-3">
+                <div class="d-flex flex-column px-3 py-3 justify-content-between" style="background-color: #4d93da">
+                    <h4 class='card-title'>MEDCIN SPECIALIST </h4>
+                    <div class="card-right d-flex align-items-center">
+                        <!--UPDATE DATA DYNAMICALLY FROM DATABASE-->
+                        <h3 class="text-white">000</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-3">
+                <div class="d-flex flex-column px-3 py-3 justify-content-between" style="background-color: #4dde96">
+                    <h4 class='card-title'>TRANSFERT</h4>
+                    <div class="card-right d-flex align-items-center">
+                        <!--UPDATE DATA DYNAMICALLY FROM DATABASE-->
+                        <h3 class="text-white">10</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dataTable-container" style="background: #ffffff; padding: 10px; border-radius: 10px; margin-top: 40px;">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Date of Birth</th>
+                    <th>Gender</th>
+                    <th>Address</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="patient : ${patients}">
+                    <td th:text="${patient.hgrGomaPatientId}"></td>
+                    <td th:text="${patient.firstName}"></td>
+                    <td th:text="${patient.lastName}"></td>
+                    <td th:text="${patient.dateOfBirth}"></td>
+                    <td th:text="${patient.patientGender}"></td>
+                    <td th:text="${patient.address}"></td>
+                    <td th:text="${patient.patientEmail}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>
 </body>
 </html>

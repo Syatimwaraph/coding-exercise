@@ -6,27 +6,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
 @Controller
-public class LoginController {
-
+public class PatientControllerHGRGoma {
     @Autowired
     private PatientHGRGomaService patientHGRGomaService;
 
-    @GetMapping("/login")
-    public String loginSubmit(){
-        return "auth-login";
+    @GetMapping("/registerpatienthgrgoma")
+    public String showRegisterPatientHgrGoma(Model model){
+        model.addAttribute("patientHGRGoma", new PatientHGRGoma());
+        model.addAttribute("method", "post");
+        return "pages/register_patient_hgrgoma";
     }
 
-    @GetMapping("/hgrgomadashboard")
-    public String succesLoginGoma(){
-        return "pages/hgrgomadashpage";
-    }
-    @GetMapping("/healafricadashboard")
-    public String succesLoginHealAfrica(){
-        return "pages/healafricadashpage";
+    @PostMapping("/hgrgoma")
+    public RedirectView savePatientHGRGoma(@ModelAttribute PatientHGRGoma patientHGRGoma, Model model){
+        patientHGRGomaService.savePatientHGRGoma(patientHGRGoma);
+        return new RedirectView("/registerpatienthgrgoma");
     }
 
     @GetMapping("/patientsHgrGoma")
@@ -37,4 +38,3 @@ public class LoginController {
         return "pages/hgrgomadashboard";
     }
 }
-
