@@ -17,6 +17,7 @@ public class PatientHGRGoma {
     private String firstName;
     private String lastName;
     private String dateOfBirth;
+    private boolean istransferred;
     private String patientGender;
     private String address;
     private String patientEmail;

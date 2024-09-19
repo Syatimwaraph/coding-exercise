@@ -1,14 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Hospital Admin Dashboard</title>
 
     <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
-
     <link rel="stylesheet" th:href="@{/css/Chart.min.css}">
-
     <link rel="stylesheet" th:href="@{/css/perfect-scrollbar.css}">
     <link rel="stylesheet" th:href="@{/css/app.css}">
     <link rel="shortcut icon" th:href="@{/images/favicon-2.svg}" type="image/x-icon">
@@ -16,31 +14,81 @@
 <body>
     <div id="app"><!--main content-->
         <!--sidebar and main-->
-        <span th:replace="fragments/sidebar :: sidebar"></span>
+        <div th:insert="fragments/sidebar :: sidebar"></div>
 <!--        div main{-->
 <!--        header and footer inside div main-->
 <!--        div header-->
 <!--        div dynamic content-->
 <!--        div footer}-->
         <div id="main"><!--content id-->
-            <span th:replace="fragments/header :: header"></span>
+            <div th:insert="fragments/header :: header"></div>
             <!--you can replace this using page -->
-            <div class="main-content container-fluid" layout:fragment="content"><!--dynamic content-->
+            <div  th:replace="${contentPage}"></div>
                 <div>
-                    <span th:replace="fragments/footer :: footer"></span>
+                    <div th:insert="fragments/footer :: footer"></div>
                 </div>
-            </div>
         </div>
     </div>
-
+    <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js}"></script>
+    <script th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js}"></script>
     <script th:src="@{/js/feather.min.js}"></script>
     <script th:src="@{/js/perfect-scrollbar.min.js}"></script>
     <script th:src="@{/js/app.js}"></script>
-
+    <script th:src="@{/js/transfer.js}"></script>
     <script th:src="@{/js/Chart.min.js}"></script>
     <script th:src="@{/js/apexcharts.min.js}"></script>
     <script th:src="@{/js/dashboard.js}"></script>
-
+    <script th:src="@{/js/sidebarActiveLink.js}"></script>
     <script th:src="@{/js/main.js}"></script>
+    <script>
+        // Initialization for ES Users
+        // import { Tab, initMDB } from "mdb-ui-kit";
+        //
+        // initMDB({ Tab });
+
+        console.log("Hello World");
+
+        const data = JSON.parse(localStorage.getItem("transferredPatientGoma"));
+        console.log(data);
+
+        const tableBody = document.querySelector("#transferredPatientTabs"); // Get the table body
+        console.log(tableBody);
+        let rowInsert;
+
+        if (!data) {
+            rowInsert = document.createElement("tr");
+            rowInsert.textContent = "No Data";
+            tableBody.append(rowInsert); // Append the row to the table body
+        } else {
+            rowInsert = document.createElement("tr");
+            // Create table cells and append them to the row
+            const cells = [];
+            cells.push(document.createElement("td"));
+            cells[0].textContent = data.id; // Set the text content
+            cells.push(document.createElement("td"));
+            cells[1].textContent = data.firstName;
+            cells.push(document.createElement("td"));
+            cells[2].textContent = data.lastName;
+            cells.push(document.createElement("td"));
+
+
+            cells[3].textContent = data.DateOfBirth;
+            cells.push(document.createElement("td"));
+
+            cells[4].textContent= data.Gender;
+            cells.push(document.createElement("td"));
+
+            cells[5].textContent = data.Address;
+            cells.push(document.createElement("td"));
+
+            cells[6].textContent = data.Email;
+            cells.push(document.createElement("td"));
+
+            cells[7].textContent = data.Transferred;
+
+            rowInsert.append(...cells); // Append the cells to the row
+            tableBody.append(rowInsert); // Append the row to the table body
+        }
+    </script>
 </body>
 </html>

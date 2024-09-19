@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/dashboard}" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>HGR-GOMA | Dashboard</title>
+
 </head>
 <body>
-<div class="main-content container-fluid" layout:fragment="content">
+<div class="main-content container-fluid" th:fragment="hg_content">
     <div class="page-title">
         <h3>HGR - GOMA</h3>
     </div>
@@ -50,31 +50,90 @@
             </div>
         </div>
         <div class="dataTable-container" style="background: #ffffff; padding: 10px; border-radius: 10px; margin-top: 40px;">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Date of Birth</th>
-                    <th>Gender</th>
-                    <th>Address</th>
-                    <th>Email</th>
-                    <th>Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="patient : ${patients}">
-                    <td th:text="${patient.hgrGomaPatientId}"></td>
-                    <td th:text="${patient.firstName}"></td>
-                    <td th:text="${patient.lastName}"></td>
-                    <td th:text="${patient.dateOfBirth}"></td>
-                    <td th:text="${patient.patientGender}"></td>
-                    <td th:text="${patient.address}"></td>
-                    <td th:text="${patient.patientEmail}"></td>
-                </tr>
-                </tbody>
-            </table>
+            <div id="exTab1" class="container">
+                <ul class="nav nav-pills">
+                    <li class="active">
+                        <a href="#patientTab" data-toggle="tab" style="padding: 10px; margin-right: 10px">Patient Table</a>
+                    </li>
+                    <li>
+                        <a href="#transferredPatientTab" data-toggle="tab" style="padding: 10px">Table des patient transferrer</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content clearfix">
+                    <!-- Patient Table Tab -->
+                    <div class="tab-pane active" id="patientTab">
+                        <h3>Patient Table</h3>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Date of Birth</th>
+                                <th>Gender</th>
+                                <th>Address</th>
+                                <th>Email</th>
+                                <th>Status Du Patient</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="patient : ${patients}">
+                                <td th:text="${patient.hgrGomaPatientId}"></td>
+                                <td th:text="${patient.firstName}"></td>
+                                <td th:text="${patient.lastName}"></td>
+                                <td th:text="${patient.dateOfBirth}"></td>
+                                <td th:text="${patient.patientGender}"></td>
+                                <td th:text="${patient.address}"></td>
+                                <td th:text="${patient.patientEmail}"></td>
+                                <td>
+                                    <span class="badges bg-lightgreen " th:if="${patient?.istransferred}">Transferred</span>
+                                    <span class="badges" th:class="${patient.istransferred ? 'bg-lightgreen' : 'bg-lightred'}">
+    <a th:href="@{/hg/transfer/{patientId}(patientId=${patient.hgrGomaPatientId})}"
+       th:onclick="|transferPatient(event, ${patient.hgrGomaPatientId})|"
+       th:text="${patient.istransferred ? 'Transferred' : 'Not Transferred'}"></a>
+</span>
+
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Transferred Patient Table Tab -->
+                    <div class="tab-pane" id="transferredPatientTab">
+                        <h3>Transferred Patient Table</h3>
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Date of Birth</th>
+                                <th>Gender</th>
+                                <th>Address</th>
+                                <th>Email</th>
+                                <th>Status Du Patient</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="patient : ${transfered}" >
+                                <td th:text="${patient.healAfricaPatientId}"></td>
+                                <td th:text="${patient.firstName}"></td>
+                                <td th:text="${patient.lastName}"></td>
+                                <td th:text="${patient.dateOfBirth}"></td>
+                                <td th:text="${patient.patientGender}"></td>
+                                <td th:text="${patient.address}"></td>
+                                <td th:text="${patient.patientEmail}"></td>
+                                <td>
+                                    <span class="badges bg-lightgreen" th:if="${patient?.istransferred}">Transferred</span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 </div>

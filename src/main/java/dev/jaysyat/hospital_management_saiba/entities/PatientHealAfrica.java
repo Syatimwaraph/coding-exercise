@@ -7,8 +7,6 @@ import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
-
 @Entity
 @Getter
 @Setter
@@ -21,6 +19,7 @@ public class PatientHealAfrica {
     private String lastName;
     private String dateOfBirth;
     private String patientGender;
+    private boolean istransferred;
     private String address;
     private String patientEmail;
 
